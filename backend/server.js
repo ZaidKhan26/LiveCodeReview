@@ -5,6 +5,7 @@ const cors = require('cors');
 const helmet = require("helmet")
 const connectDB = require('./config/db');
 const errorMiddleware = require('./middleware/error.middleware')
+const cookieParser = require("cookie-parser")
 
 connectDB();
 const port = process.env.PORT || 5000;
@@ -16,6 +17,7 @@ app.use(cors({
   origin:  process.env.CLIENT_URL,
   credentials: true
 }));
+app.use(cookieParser())
 
 app.get("/", (req,res) => {
     res.send("Backend is Running");
